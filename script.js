@@ -453,16 +453,17 @@ function renderChart(breakdownData) {
             }
         }
     });
-   // --- Initial Page Load FIX ---
-// 1. Get ALL sections in the application (Dashboard, Add Transaction, History, etc.)
-document.querySelectorAll('.app-section').forEach(section => {
-    // 2. FORCE every section to be hidden on startup
-    section.classList.add('hidden'); 
+   document.addEventListener('DOMContentLoaded', (event) => {
+    // This code runs ONLY after the entire HTML page is loaded and ready.
+    
+    // 1. Force all sections to be hidden (The fundamental structural fix)
+    document.querySelectorAll('.app-section').forEach(section => {
+        section.classList.add('hidden'); 
+    });
+
+    // 2. Explicitly show the Dashboard (by removing the hidden class)
+    document.getElementById('dashboard-section').classList.remove('hidden'); 
+
+    // 3. Highlight the correct button
+    document.querySelector('.nav-btn[data-section="dashboard-section"]').classList.add('active'); 
 });
-
-// 3. Explicitly show the Dashboard (by removing the hidden class)
-document.getElementById('dashboard-section').classList.remove('hidden'); 
-
-// 4. Force the Dashboard button to be highlighted (for visual correctness)
-document.querySelector('.nav-btn[data-section="dashboard-section"]').classList.add('active');
-
