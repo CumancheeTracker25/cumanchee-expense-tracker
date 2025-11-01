@@ -453,10 +453,16 @@ function renderChart(breakdownData) {
             }
         }
     });
-    document.querySelector('.nav-btn[data-section="dashboard-section"]').click();
-}
+   // --- Initial Page Load FIX ---
+// 1. Get ALL sections in the application (Dashboard, Add Transaction, History, etc.)
+document.querySelectorAll('.app-section').forEach(section => {
+    // 2. FORCE every section to be hidden on startup
+    section.classList.add('hidden'); 
+});
 
-// --- Main execution ---
-loadData(); 
+// 3. Explicitly show the Dashboard (by removing the hidden class)
+document.getElementById('dashboard-section').classList.remove('hidden'); 
 
-applySavedTheme();
+// 4. Force the Dashboard button to be highlighted (for visual correctness)
+document.querySelector('.nav-btn[data-section="dashboard-section"]').classList.add('active');
+
