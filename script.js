@@ -453,8 +453,10 @@ function renderChart(breakdownData) {
             }
         }
     });
+    document.querySelector('.nav-btn[data-section="dashboard-section"]').click();
 }
 
 // --- Main execution ---
 loadData(); 
+
 applySavedTheme();
